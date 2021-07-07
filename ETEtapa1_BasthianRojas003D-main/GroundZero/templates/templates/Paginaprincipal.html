@@ -1,0 +1,211 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GreenPanda | Pagina Principal</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'GreenPanda/css/estilo.css' %}">
+        <link href="{% static 'GreenPanda/css/bootstrap.min.css'%}" type="text/css" rel="stylesheet"> 
+        <link rel="icon" type="image/png" href="{% static 'GreenPanda/img/icono.jpg'%}" />
+        <!--Libreria Jquery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!--SCRIPT-->
+        <script type="text/javascript">
+          $(document).ready(function()
+          {
+              $("#solicitar").click(function(){
+  
+                  $.get("https://mindicador.cl/api",
+                      function(data){
+                          
+                          $.each(data,function(i,item){
+                              $("#monedas").append("<tr><td>"+item.codigo+"</td><td>"+item.nombre +
+                              "</td><td>"+ item.valor+ "</td><td>" + item.fecha + "</td></tr>");
+                              
+  
+                          });
+  
+                      });
+              });
+          })
+      </script>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700display;=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- logo -->
+            <a class="navbar-brand" href="{% url 'Paginaprincipal' %}">
+                <img src="{% static 'GreenPanda/img/fondooo 2.0.png'%}" width="150" height="150" alt="">
+            </a>
+          
+            <!-- enlaces -->
+            <div class="collapse navbar-collapse" id="opciones">   
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Paginaprincipal' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Productos' %}">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'QuienesSomos' %}">Sobre nosotros</a>
+                </li>
+                <li class="nav=item">
+                    <a class="nav-link" href="{% url 'Comentarios' %}">Reseñas</a>
+                </li>           
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Registro' %}">Registro</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Despacho' %}">Despacho</a>
+            </li>
+                </ul>
+            </div>
+        </nav>
+        <!--Carrusel-->
+      <div class="container p-5 my-5 ">
+        <h1>Lo mas vendido</h1>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="{% static 'GreenPanda/img/slide1.png'%}" alt="First slide" width="1000px" height="600px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Hilos dentales orgánicos</h5>
+                    <p1>Hilos dentales hechos a base de maíz o carbón</p1>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'GreenPanda/img/slide2.png'%}" alt="Second slide" width="1000px" height="600px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Cepillo dental de bambú</h5>
+                    <p1>Cepillo dental para niñ@s de forma redonda con mango ergonómico para un mejor agarre  y cepillado</p1>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'GreenPanda/img/slide3.png'%}" alt="Third slide" width="1000px" height="600px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Cotonitos de algodón y bambú</h5>
+                    <p1>100% materiales naturales y amigables. El algodón más suave de la punta que cualquier otro bastoncillo</p1>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
+        </div>
+      </div>
+        <!--Jumbotron-->
+        <div class="container ">   
+          <div class="jumbotron">
+            <h3>Información:</h3> 
+            <h5 onmouseover="style.color = 'black'" onmouseout="style.color= 'green'">Somos una página relacionada al cuidado del medio ambiente, aportando a través de la venta de productos biodegradables amigables con la naturaleza.
+              Nuestros productos son 100% naturales, elaborados de bambú, algodón, derivados de carbón y maíz.
+              </p>
+              Nuestros productos son 100% compostables, por su procedencia natural. Lo que los hace una buena opción para reciclaje y una desecho amigable para el medio ambiente
+              </h5>
+            <a href="QuienesSomos.html" class="btn btn-primary btn-lg">Más Información</a>       
+          </div><br><br>
+          <style>
+            #caja{
+              margin-left:40px;
+            }
+          </style>
+          <div class="container">
+            <div class="jumbotron">
+            <h3>Monedas importantes en pesos chilenos</h3>
+            <h5 onmouseover="style.color = 'black'" onmouseout="style.color= 'green'">Muchas gracias por visitarnos, si es que no eres de Chile y te interesa
+              coordinar una compra internacional ese servicio aún no está disponible desde nuestra página web, pero pronto lo estará,
+              aun así, podemos coordinar una venta internacional si nos hablas directamente al WhatsApp. Te dejamos una conversión de las monedas más importantes
+              a pesos chilenos para que tengas una referencia. Muchas gracias por tu aporte al medio ambiente.
+            </h5>
+            <div id="caja">
+              <button type="button" id="solicitar">Solicitar tipo de monedas</button>
+            </div>
+            <br><br>
+    
+            <table class="table" id="monedas">
+              <thead>
+                <tr>
+                  <th scope="col">Código</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Valor</th>
+                  <th scope="col">Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+    
+              </tbody>
+            </table>
+          </div>
+          </div>
+
+</body>
+        
+        
+        <!--Copyright-->
+        <div class="copyright py-4 text-center text-white">
+          <div class="container"><small>Copyright © GreenPanda 2021</small></div>
+        </div>
+          <!--Script-->
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+          <!-- JQuery -->
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <!-- Bootstrap tooltips -->
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+          <!-- Bootstrap core JavaScript -->
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+          <!-- MDB core JavaScript -->
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+        </div>
+    </body>
+    <!--Footer-->
+    <footer class="page-footer bg-dark pt-4 pb-4">
+      <div class="bg-succes">
+        <div class="container">
+          <div class="row-py4 d-flex align-items-center">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+              <h4 class="text-uppercase mb-4">GreenPanda</h4>
+              <p class="lead mb-0">
+                  Villa los héroes, Maipú.
+                  <br />
+                  Basthian Rojas, Maximiliano 
+                  <br />
+                  Hidalgo, Francisco Valenzuela
+              </p>
+            </div>
+            <div class="col-md-12 text-center">
+              <a href="https://www.facebook.com/102209005147521/shop/all_products/?ref_surface=mini_shop_storefront" target="_blank"><i class="fab fa-facebook-f text-white mr-4 fa-3x"></i></a>
+              <a href="https://www.instagram.com/green.panda_/?igshid=x70y44m5ow25" target="_blank"><i class="fab fa-instagram text-white mr-4 fa-3x"></i></a>
+              <a href="https://api.whatsapp.com/send?phone=56940549850&text=Hola!,%20me%20interesaría%20conocer%20mayor%20información%20sobre%20los%20productos%20biodegradables." target="_blank"><i class="fab fa-whatsapp fa-3x"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+</html>

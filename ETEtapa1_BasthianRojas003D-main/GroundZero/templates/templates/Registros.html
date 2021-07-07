@@ -1,0 +1,130 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <title>GreenPanda | Registros</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'GroundZero/css/estilo.css' %}">
+        <link href="{% static 'GroundZero/css/bootstrap.min.css'%}" type="text/css" rel="stylesheet"> 
+        <link rel="icon" type="image/png" href="{% static 'GroundZero/img/icono.jpg'%}" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700display;=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- logo -->
+            <a class="navbar-brand" href="{% url 'Paginaprincipal' %}">
+                <img src="{% static 'GroundZero/img/fondooo 2.0.png'%}" width="150" height="150" alt="">
+            </a>
+          
+            <!-- enlaces -->
+            <div class="collapse navbar-collapse" id="opciones">   
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Paginaprincipal' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Productos' %}">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'QuienesSomos' %}">Sobre nosotros</a>
+                </li> 
+                <li class="nav=item">
+                  <a class="nav-link" href="{% url 'Comentarios' %}">Reseñas</a>
+                </li>          
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Registro' %}">Registro</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Despacho' %}">Despacho</a>
+            </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--sección de comentario-->
+        <div class="section ">
+          <div class="container ">
+              <h2 style="font-family:Boquerón">Registro</h2>
+              <div class="row ">
+                  <div class="col-lg-8 mx-auto ">
+                      <div class="caja" style="background-color: rgba(255, 255, 255, 0.5);font-family: Boquerón;">
+                        {%for ve in datos %}
+                          <div>
+                              <img class="circular--square" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" width="50" height="50" style="border-radius: 50%;">
+                              <div class="media-body">
+                                  <div class="small-1">
+                                      <b>{{ve.numeroid}}</b>
+                                      <b>{{ve.foto}}</b>
+                                      <b>{{ve.nombrecomp}}</b>
+                                      <b>{{ve.email}}</b>
+                                      <time class="ml-4 opaciy-70 small-3">{{ve.direccion}}</time>
+                                      <a href="{% url 'eliminar' ve.numeroid %}" style="color: #9b9b9b"><i class="far fa-trash-alt" style="float: right;position: relative;margin-left: 14px;"></i></a> <a href="{% url 'modRegistro' ve.numeroid%}" style="color: #9b9b9b"><i class="fas fa-edit" style="float: right;position: relative;margin-left: 14px;"></i></a>
+                                  </div>
+                                  <p>{{ve.pais}}</p> 
+                              </div>
+                          </div>
+                          {%endfor%}
+                      </div>
+                      <div>
+                        <a class="btn btn-primary" href="{% url 'Registros' %}" role="button">Comentar</a>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+                <!--Copyright-->
+                <div class="copyright py-4 text-center text-white">
+                    <div class="container"><small>Copyright © GreenPanda 2021</small></div>
+                  </div>
+                    <!--Script-->
+                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+                    <!-- JQuery -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <!-- Bootstrap tooltips -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+                    <!-- Bootstrap core JavaScript -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+                    <!-- MDB core JavaScript -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+                  </div>
+    </body>
+    <!--Footer-->
+    <footer class="page-footer bg-dark pt-4 pb-4">
+        <div class="bg-succes">
+          <div class="container">
+            <div class="row-py4 d-flex align-items-center">
+              <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">GreenPanda</h4>
+                <p class="lead mb-0">
+                    Villa los héroes, Maipú.
+                    <br />
+                    Basthian Rojas, Maximiliano 
+                    <br />
+                    Hidalgo, Francisco Valenzuela
+                </p>
+              </div>
+              <div class="col-md-12 text-center">
+                <a href="https://www.facebook.com/102209005147521/shop/all_products/?ref_surface=mini_shop_storefront" target="_blank"><i class="fab fa-facebook-f text-white mr-4 fa-3x"></i></a>
+                <a href="https://www.instagram.com/green.panda_/?igshid=x70y44m5ow25" target="_blank"><i class="fab fa-instagram text-white mr-4 fa-3x"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=56940549850&text=Hola!,%20me%20interesaría%20conocer%20mayor%20información%20sobre%20los%20productos%20biodegradables." target="_blank"><i class="fab fa-whatsapp fa-3x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+</html>
